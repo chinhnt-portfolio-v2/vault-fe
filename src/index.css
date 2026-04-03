@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Tailwind 3 dark mode ── */
+html.dark body { background-color: #09090B; color: #F8FAFC; }
+
+@layer base {
+  html {
+    font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: #334155; }
+}
+
+@layer components {
+  .card {
+    @apply bg-card rounded-lg border border-border shadow-sm;
+    background-color: var(--card);
+    border-color: var(--border);
+  }
+  :is(.dark) .card {
+    background-color: #18181F;
+    border-color: #27272A;
+  }
+
+  .input {
+    @apply w-full rounded-md border px-3 py-2 text-sm transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-secondary rounded;
+  }
+  :is(.dark) .skeleton {
+    background-color: #27272A;
+  }
+}
+
+/* ── Spring animation tokens (Framer Motion values) ── */
+:root {
+  --color-brand: #7C3AED;
+  --color-brand-light: #A855F7;
+  --spring-gentle-stiffness: 300;
+  --spring-gentle-damping: 30;
+  --spring-snappy-stiffness: 400;
+  --spring-snappy-damping: 25;
+  --spring-bouncy-stiffness: 200;
+  --spring-bouncy-damping: 15;
+}
+
+.dark {
+  --color-brand: #A855F7;
+  --color-brand-light: #C084FC;
+}
+
+/* ── Brand utility classes ── */
+.bg-brand { background-color: var(--color-brand); }
+.text-brand { color: var(--color-brand); }
+.ring-brand { --tw-ring-color: var(--color-brand); }
+
+.bg-brand-glow { box-shadow: 0 0 14px rgba(124, 58, 237, 0.35); }
+.dark .bg-brand-glow { box-shadow: 0 0 14px rgba(168, 85, 247, 0.4); }
+.bg-brand-glow-hover:hover { box-shadow: 0 0 22px rgba(124, 58, 237, 0.5); }
+.dark .bg-brand-glow-hover:hover { box-shadow: 0 0 22px rgba(168, 85, 247, 0.6); }
+
+/* ── Tag chip ── */
+.tag-chip {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  background-color: rgba(124, 58, 237, 0.1);
+  color: var(--color-brand);
+}
+:is(.dark) .tag-chip {
+  background-color: rgba(168, 85, 247, 0.2);
+  color: var(--color-brand-light);
+}
+
+/* ── Favicon placeholder ── */
+.favicon-img {
+  @apply w-5 h-5 rounded-sm object-contain;
+}
+
+/* ── Bottom sheet slide-up ── */
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.animate-slide-up { animation: slide-up 200ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
