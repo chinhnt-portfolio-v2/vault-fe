@@ -7,21 +7,10 @@
     {
       "source": "/oauth2/:path*",
       "destination": "https://portfolio-platform-1095331155372.asia-southeast1.run.app/oauth2/:path*"
-    }
-  ],
-  "redirects": [
+    },
     {
-      "source": "/(.*)",
-      "destination": "/index.html",
-      "statusCode": 200
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "https://vault.chinhnt.xyz" }
-      ]
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ]
 }
