@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 const BASE_URL =
-  (import.meta.env.VITE_API_BASE_URL || 'https://portfolio-platform-1095331155372.asia-southeast1.run.app') +
-  '/api/v1'
+  (import.meta.env.VITE_API_BASE_URL ?? '') + '/api/v1'
 
 // ─── Token refresh state ────────────────────────────────────────────────────
 
@@ -30,8 +29,9 @@ async function refreshAccessToken(): Promise<string> {
 
   if (!response.ok) {
     localStorage.removeItem('vault-auth-storage')
-    window.location.href = '/login'
-    throw new Error('Refresh failed')
+    // Use replaceState + reload to stay within SPA, avoid double-proxy-404
+    const msg = 'Refresh failed'
+    return Promise.reject(new Error(msg))
   }
 
   const data = await response.json()
@@ -72,7 +72,19 @@ apiClient.interceptors.response.use(
   (error) => {
     const originalRequest = error.config
 
+    // On 401 with no token → user is logged out → go to login (SPA navigation)
     if (error.response?.status === 401 && !originalRequest._retry) {
+      // Only redirect if the request didn't already include a token
+      const state = localStorage.getItem('vault-auth-storage')
+      const hadToken = state && JSON.parse(state).state.accessToken
+
+      if (!hadToken) {
+        // No token ever — go to login
+        window.location.replace('/login')
+        return Promise.reject(new Error('Unauthorized'))
+      }
+
+      // Had token but got 401 → try refresh
       if (isRefreshing) {
         return new Promise((resolve) => {
           subscribeTokenRefresh((token: string) => {
@@ -94,6 +106,8 @@ apiClient.interceptors.response.use(
         })
         .catch(() => {
           isRefreshing = false
+          localStorage.removeItem('vault-auth-storage')
+          window.location.replace('/login')
           return Promise.reject(new Error('Hết phiên đăng nhập. Đang chuyển về trang đăng nhập…'))
         })
     }

@@ -11,5 +11,15 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    proxy: {
+      '/api': {
+        target: 'https://portfolio-platform-1095331155372.asia-southeast1.run.app',
+        changeOrigin: true,
+      },
+      '/oauth2': {
+        target: 'https://portfolio-platform-1095331155372.asia-southeast1.run.app',
+        changeOrigin: true,
+      },
+    },
   },
 })
