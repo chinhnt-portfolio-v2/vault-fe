@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Bookmark Vault Logo">
+  <title>Bookmark Vault</title>
+  <desc>A rich bookmark vault icon with tag labels and a magnifying glass search element</desc>
+
+  <defs>
+    <!-- Primary brand gradient: top-left light to bottom-right deep purple -->
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#9F67FF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+
+    <!-- Vault door gradient: steel-ish with brand tint -->
+    <linearGradient id="vaultGrad" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#EDE9FE"/>
+      <stop offset="100%" stop-color="#C4B5FD"/>
+    </linearGradient>
+
+    <!-- Magnifier lens gradient -->
+    <radialGradient id="lensGrad" cx="40%" cy="40%" r="60%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#F5F3FF"/>
+      <stop offset="100%" stop-color="#DDD6FE"/>
+    </radialGradient>
+
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#7C3AED" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- Glow filter for accent elements -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 1. VAULT BODY — rounded rectangle base -->
+  <!-- ═══════════════════════════════════════ -->
+  <rect x="6" y="10" width="40" height="44" rx="7" ry="7"
+        fill="url(#brandGrad)" filter="url(#shadow)"/>
+
+  <!-- Vault body inner border / inset face -->
+  <rect x="9" y="13" width="34" height="38" rx="5" ry="5"
+        fill="url(#vaultGrad)" opacity="0.35"/>
+
+  <!-- Vault top hinge block -->
+  <rect x="10" y="7" width="10" height="8" rx="3" ry="3"
+        fill="#5B21B6"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 2. BOOKMARK TAB — protrudes from top   -->
+  <!-- ═══════════════════════════════════════ -->
+  <path d="M28 7 L28 20 Q28 23 31 23 Q34 23 34 20 L34 7 Z"
+        fill="url(#brandGrad)" filter="url(#glow)"/>
+  <!-- Bookmark notch (classic notch at bottom of tab) -->
+  <path d="M28 18 Q28 21 31 21 Q34 21 34 18 L34 17 L31 14 L28 17 Z"
+        fill="#5B21B6" opacity="0.6"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 3. TAG LABELS — inside vault face      -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- Tag 1: primary label (purple) -->
+  <rect x="13" y="19" width="20" height="6" rx="3" ry="3"
+        fill="#7C3AED" opacity="0.90"/>
+  <!-- Tag 1 text line -->
+  <rect x="15" y="21" width="10" height="2" rx="1" ry="1"
+        fill="white" opacity="0.85"/>
+
+  <!-- Tag 2: secondary label (lighter purple) -->
+  <rect x="13" y="28" width="15" height="6" rx="3" ry="3"
+        fill="#A78BFA" opacity="0.75"/>
+  <!-- Tag 2 text line -->
+  <rect x="15" y="30" width="8" height="2" rx="1" ry="1"
+        fill="white" opacity="0.75"/>
+
+  <!-- Tag 3: tiny label (accent) -->
+  <rect x="13" y="37" width="11" height="6" rx="3" ry="3"
+        fill="#C4B5FD" opacity="0.70"/>
+  <!-- Tag 3 text line -->
+  <rect x="15" y="39" width="6" height="2" rx="1" ry="1"
+        fill="white" opacity="0.65"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 4. VAULT DOOR DETAILS                  -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- Spoke lines (vault door pattern) -->
+  <line x1="26" y1="16" x2="26" y2="50" stroke="#7C3AED" stroke-width="0.8" opacity="0.30"/>
+  <line x1="9"  y1="32" x2="43" y2="32" stroke="#7C3AED" stroke-width="0.8" opacity="0.30"/>
+
+  <!-- Circular vault dial (center ring) -->
+  <circle cx="26" cy="32" r="7"
+          fill="none" stroke="#7C3AED" stroke-width="1.5" opacity="0.55"/>
+  <!-- Dial inner hub -->
+  <circle cx="26" cy="32" r="3"
+          fill="#7C3AED" opacity="0.45"/>
+  <!-- Dial tick marks -->
+  <line x1="26" y1="25" x2="26" y2="27" stroke="#7C3AED" stroke-width="1.5" opacity="0.60" stroke-linecap="round"/>
+  <line x1="26" y1="37" x2="26" y2="39" stroke="#7C3AED" stroke-width="1.5" opacity="0.60" stroke-linecap="round"/>
+  <line x1="19" y1="32" x2="21" y2="32" stroke="#7C3AED" stroke-width="1.5" opacity="0.60" stroke-linecap="round"/>
+  <line x1="31" y1="32" x2="33" y2="32" stroke="#7C3AED" stroke-width="1.5" opacity="0.60" stroke-linecap="round"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 5. MAGNIFYING GLASS — search element   -->
+  <!--    Positioned bottom-right overlapping  -->
+  <!--    the vault at a 45° tilt            -->
+  <!-- ═══════════════════════════════════════ -->
+  <g transform="translate(44, 40) rotate(-45)">
+    <!-- Lens outer ring -->
+    <circle cx="0" cy="0" r="12"
+            fill="url(#lensGrad)" stroke="#7C3AED" stroke-width="2.5"
+            filter="url(#shadow)"/>
+    <!-- Lens inner highlight -->
+    <circle cx="-2.5" cy="-2.5" r="5"
+            fill="white" opacity="0.35"/>
+    <!-- Lens crosshair detail (bookmark lines inside lens) -->
+    <line x1="-5" y1="0" x2="5" y2="0"
+          stroke="#7C3AED" stroke-width="1.2" opacity="0.50" stroke-linecap="round"/>
+    <line x1="0" y1="-5" x2="0" y2="5"
+          stroke="#7C3AED" stroke-width="1.2" opacity="0.50" stroke-linecap="round"/>
+  </g>
+
+  <!-- Magnifier handle -->
+  <rect x="53" y="50" width="5" height="10" rx="2.5" ry="2.5"
+        fill="#7C3AED" opacity="0.85"
+        transform="rotate(-45, 55.5, 55)"/>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 6. SPARKLE / ACCENT DOTS               -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- Top-right sparkle -->
+  <circle cx="54" cy="14" r="2"   fill="#A78BFA" opacity="0.75"/>
+  <circle cx="58" cy="9"  r="1.2" fill="#C4B5FD" opacity="0.65"/>
+
+  <!-- Bottom-left accent dot -->
+  <circle cx="9"  cy="54" r="1.5" fill="#A78BFA" opacity="0.55"/>
+
+</svg>

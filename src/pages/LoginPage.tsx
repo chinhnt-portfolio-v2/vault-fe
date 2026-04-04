@@ -72,16 +72,8 @@ export default function LoginPage() {
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4" aria-hidden="true">
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-              <rect width="64" height="64" rx="16" fill="#7C3AED" fillOpacity="0.1"/>
-              <rect x="8" y="16" width="48" height="36" rx="8" fill="#7C3AED" fillOpacity="0.15"/>
-              <rect x="8" y="16" width="48" height="36" rx="8" stroke="#7C3AED" strokeWidth="2"/>
-              <line x1="8" y1="26" x2="56" y2="26" stroke="#7C3AED" strokeWidth="2" opacity="0.5"/>
-              <circle cx="44" cy="34" r="5" fill="#7C3AED"/>
-              <rect x="16" y="32" width="14" height="2" rx="1" fill="#7C3AED" fillOpacity="0.6"/>
-              <rect x="16" y="36" width="8" height="2" rx="1" fill="#7C3AED" fillOpacity="0.4"/>
-            </svg>
+          <div className="flex justify-center mb-4">
+            <img src="/logo.svg" alt="Bookmark Vault" className="w-16 h-16" />
           </div>
           <h1 className="text-xl font-bold text-foreground">{t('appName')}</h1>
           <p className="text-sm text-muted-foreground mt-1">
