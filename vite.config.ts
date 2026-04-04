@@ -5,9 +5,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+    alias: { '@': path.resolve(__dirname, './src') },
   },
   server: {
     port: 5173,
@@ -15,10 +13,12 @@ export default defineConfig({
       '/api': {
         target: 'https://portfolio-platform-1095331155372.asia-southeast1.run.app',
         changeOrigin: true,
+        secure: true,
       },
       '/oauth2': {
         target: 'https://portfolio-platform-1095331155372.asia-southeast1.run.app',
         changeOrigin: true,
+        secure: true,
       },
     },
   },
