@@ -24,13 +24,11 @@ function OAuthCallbackHandler() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    const code        = params.get('code')
     const accessToken  = params.get('accessToken')
     const refreshToken = params.get('refreshToken')
     const tokenType    = params.get('tokenType') ?? 'Bearer'
 
-    // Authorization code flow: backend redirects here with tokens in URL query params
-    // (POST /callback is not implemented; backend uses GET redirect with tokens in URL)
+    // Backend redirects here with tokens in URL (GET redirect, no code exchange needed)
 
     if (accessToken && refreshToken) {
       // Implicit flow
