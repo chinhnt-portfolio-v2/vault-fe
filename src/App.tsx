@@ -29,34 +29,8 @@ function OAuthCallbackHandler() {
     const refreshToken = params.get('refreshToken')
     const tokenType    = params.get('tokenType') ?? 'Bearer'
 
-    if (code) {
-      // Authorization code flow (POST exchange)
-      fetch('/api/v1/auth/oauth2/callback', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-        credentials: 'include',
-      })
-        .then((r) => r.json())
-        .then((data) => {
-          if (data.accessToken) {
-            localStorage.setItem('vault-auth-storage', JSON.stringify({
-              state: {
-                accessToken: data.accessToken,
-                refreshToken: data.refreshToken ?? '',
-                tokenType: data.tokenType ?? 'Bearer',
-              },
-            }))
-          }
-          window.history.replaceState(null, '', '/')
-          navigate('/', { replace: true })
-        })
-        .catch(() => {
-          window.history.replaceState(null, '', '/login')
-          navigate('/login', { replace: true })
-        })
-      return
-    }
+    // Authorization code flow: backend redirects here with tokens in URL query params
+    // (POST /callback is not implemented; backend uses GET redirect with tokens in URL)
 
     if (accessToken && refreshToken) {
       // Implicit flow

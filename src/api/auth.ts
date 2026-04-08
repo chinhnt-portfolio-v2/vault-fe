@@ -21,5 +21,6 @@ export const getMe = () =>
 
 export const googleOAuthUrl = () => {
   const base = (import.meta.env.VITE_API_BASE_URL || 'https://portfolio-platform-1095331155372.asia-southeast1.run.app')
-  return `${base}/api/v1/auth/oauth2/login/google`
+  const redirectUri = encodeURIComponent(window.location.origin)
+  return `${base}/api/v1/auth/oauth2/login/google?redirect_uri=${redirectUri}`
 }
